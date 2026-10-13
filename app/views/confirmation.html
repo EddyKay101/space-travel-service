@@ -1,14 +1,8 @@
-{% extends "layouts/main.html" %}
-
-{% set pageName = "Application submitted" %}
-
+{% extends "layouts/main.html" %} {% set pageName = "Application submitted" %}
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    {{ govukPanel({
-      titleText: "Application submitted",
-      text: "This is a prototype, so no real application has been made."
-    }) }}
+    {{ govukPanel({ titleText: "Application submitted", }) }}
   </div>
 </div>
 {% endblock %}
