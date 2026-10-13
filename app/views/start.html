@@ -1,0 +1,22 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Space travel service" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">{{ serviceName }}</h1>
+
+    <p class="govuk-body-l">Apply for a journey to the Moon or Mars.</p>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/destination",
+      isStartButton: true
+    }) }}
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p>You will need your full name and address to complete this application.</p>
+  </div>
+</div>
+{% endblock %}

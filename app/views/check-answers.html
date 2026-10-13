@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukBackLink({ text: "Back", href: "/address" }) }}
+
+    <h1 class="govuk-heading-xl">Check your answers</h1>
+
+    {% set addressHtml %}
+      {{ data["address-line-1"] }}{% if data["address-line-2"] %}<br>{{ data["address-line-2"] }}{% endif %}<br>{{ data["town-or-city"] }}<br>{{ data.postcode }}
+    {% endset %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Destination" },
+          value: { text: "The Moon" if data.destination == "moon" else "Mars" },
+          actions: {
+            items: [{ href: "/destination", text: "Change", visuallyHiddenText: "destination" }]
+          }
+        },
+        {
+          key: { text: "Full name" },
+          value: { text: data["full-name"] },
+          actions: {
+            items: [{ href: "/name", text: "Change", visuallyHiddenText: "full name" }]
+          }
+        },
+        {
+          key: { text: "Address" },
+          value: { html: addressHtml },
+          actions: {
+            items: [{ href: "/address", text: "Change", visuallyHiddenText: "address" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Now submit your application</h2>
+    <p class="govuk-body">Check that your information is correct before submitting your application.</p>
+    <form action="/submit-application" method="post">
+      {{ govukButton({ text: "Accept and submit" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

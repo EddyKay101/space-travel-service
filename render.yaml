@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: space-travel-service
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.21.0
+      - key: NODE_ENV
+        value: production
+      - key: PASSWORD
+        sync: false

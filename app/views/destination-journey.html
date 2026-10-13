@@ -1,0 +1,18 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Your journey to " + destinationName %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukBackLink({ text: "Back", href: "/destination" }) }}
+
+    <h1 class="govuk-heading-xl">Your journey to {{ destinationName }}</h1>
+    <p>Your application will include a journey to {{ destinationName }}. Next, tell us your name and address.</p>
+
+    <form action="/journey-answer" method="post">
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -4,7 +4,9 @@ node_modules/
 # Prototype ignores - per-user
 .tmp/
 .env
+.env.*
 migrate.log
+npm-debug.log*
 
 # General ignores
 .DS_Store

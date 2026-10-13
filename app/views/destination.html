@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Where would you like to travel?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukBackLink({ text: "Back", href: "/start" }) }}
+
+    {% if errorList.length %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+
+    <form action="/destination-answer" method="post" novalidate>
+      {{ govukRadios({
+        idPrefix: "destination",
+        name: "destination",
+        value: data.destination,
+        fieldset: {
+          legend: {
+            text: "Where would you like to travel?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        errorMessage: { text: error } if error else null,
+        items: [
+          { value: "moon", text: "The Moon" },
+          { value: "mars", text: "Mars" }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

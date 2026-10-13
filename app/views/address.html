@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your address?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukBackLink({ text: "Back", href: "/name" }) }}
+
+    {% if errorList.length %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">What is your address?</h1>
+
+    <form action="/address-answer" method="post" novalidate>
+      {{ govukInput({
+        id: "address-line-1",
+        name: "address-line-1",
+        value: data["address-line-1"],
+        label: { text: "Address line 1" },
+        autocomplete: "address-line1",
+        errorMessage: { text: errors["address-line-1"] } if errors["address-line-1"] else null
+      }) }}
+
+      {{ govukInput({
+        id: "address-line-2",
+        name: "address-line-2",
+        value: data["address-line-2"],
+        label: { text: "Address line 2" },
+        hint: { text: "Optional" },
+        autocomplete: "address-line2"
+      }) }}
+
+      {{ govukInput({
+        id: "town-or-city",
+        name: "town-or-city",
+        value: data["town-or-city"],
+        label: { text: "Town or city" },
+        autocomplete: "address-level2",
+        errorMessage: { text: errors["town-or-city"] } if errors["town-or-city"] else null
+      }) }}
+
+      {{ govukInput({
+        id: "postcode",
+        name: "postcode",
+        value: data.postcode,
+        label: { text: "Postcode" },
+        classes: "govuk-input--width-10",
+        autocomplete: "postal-code",
+        errorMessage: { text: errors.postcode } if errors.postcode else null
+      }) }}
+
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}
